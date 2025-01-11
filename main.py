@@ -1,23 +1,10 @@
 #!/usr/bin/env python
 
-# Copyright (C) 2022-2023, Matteo Collica (Matypist)
+# Copyright (C) 2025, Matteo Collica (Matypist)
 #
-# This file is part of the "Telegram Groups Indexer Bot" (TGroupsIndexerBot)
+# This file is part of the "Sapienza Students Bot" (SapienzaStudentsBot)
 # project, the original source of which is the following GitHub repository:
-# <https://github.com/sapienzastudentsnetwork/tgroupsindexerbot>.
-#
-# TGroupsIndexerBot is free software: you can redistribute it and/or modify
-# it under the terms of the GNU Affero General Public License as published
-# by the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# TGroupsIndexerBot is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-# GNU Affero General Public License for more details.
-#
-# You should have received a copy of the GNU Affero General Public License
-# along with TGroupsIndexerBot. If not, see <http://www.gnu.org/licenses/>.
+# <https://github.com/sapienzastudentsnetwork/sapienzastudentsbot>.
 
 from os import getenv as os_getenv
 
@@ -34,7 +21,6 @@ from tgib.handlers.commands import Commands
 from tgib.handlers.queries import Queries
 from tgib.i18n.locales import Locale
 from tgib.logs import Logger
-from tgib.urlooking.github import GitHubMonitor
 
 try:
     from telegram import __version_info__
@@ -84,8 +70,6 @@ def main() -> None:
 
     application.job_queue.run_once(callback=ChatTable.fetch_chats, when=0, data=application.bot)
 
-    GitHubMonitor.init(application.bot)
-
     GlobalVariables.set_accounts_count(AccountTable.get_account_records_count())
 
     GlobalVariables.bot_owner = os_getenv("OWNER_CHAT_ID")
@@ -98,12 +82,6 @@ def main() -> None:
 
     if not GlobalVariables.contact_username:
         GlobalVariables.contact_username = "username"
-
-    application.job_queue.run_repeating(
-        callback=GitHubMonitor.look_for_updates,
-        interval=GitHubMonitor.interval,
-        first=1
-    )
 
     application.run_polling()
 

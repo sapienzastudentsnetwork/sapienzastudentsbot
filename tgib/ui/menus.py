@@ -1,21 +1,8 @@
-# Copyright (C) 2022-2023, Matteo Collica (Matypist)
+# Copyright (C) 2025, Matteo Collica (Matypist)
 #
-# This file is part of the "Telegram Groups Indexer Bot" (TGroupsIndexerBot)
+# This file is part of the "Sapienza Students Bot" (SapienzaStudentsBot)
 # project, the original source of which is the following GitHub repository:
-# <https://github.com/sapienzastudentsnetwork/tgroupsindexerbot>.
-#
-# TGroupsIndexerBot is free software: you can redistribute it and/or modify
-# it under the terms of the GNU Affero General Public License as published
-# by the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# TGroupsIndexerBot is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-# GNU Affero General Public License for more details.
-#
-# You should have received a copy of the GNU Affero General Public License
-# along with TGroupsIndexerBot. If not, see <http://www.gnu.org/licenses/>.
+# <https://github.com/sapienzastudentsnetwork/sapienzastudentsbot>.
 
 from telegram import InlineKeyboardMarkup, InlineKeyboardButton
 
@@ -60,50 +47,33 @@ class Menus:
 
     @classmethod
     def get_about_menu(cls, locale: Locale) -> (str, InlineKeyboardMarkup):
-        sapienzastudentsbot = True
-
-        if GlobalVariables.bot_instance and GlobalVariables.bot_instance.username.lower() == "sapienzastudentsbot":
-            sapienzastudentsbot = True
-
-        if sapienzastudentsbot:
-            text = locale.get_string("about_menu.sapienzastudentsbot")
-        else:
-            if locale.lang_code == "it":
-                text = '🚀 Creato a partire da TGroupsIndexerBot' \
-                       ' <a href="https://github.com/sapienzastudentsnetwork/tgroupsindexerbot">[GitHub]</a> di @Matypist'
-            else:
-                text = '🚀 Powered by TGroupsIndexerBot' \
-                       ' <a href="https://github.com/sapienzastudentsnetwork/tgroupsindexerbot">[GitHub]</a> by @Matypist'
+        text = locale.get_string("about_menu.sapienzastudentsbot")
 
         text = text.replace("[accounts_count]", str(GlobalVariables.stats_accounts_count))
 
-        keyboard = []
-
-        if sapienzastudentsbot:
-            keyboard += [
-                [
-                 InlineKeyboardButton(text=locale.get_string("about_menu.github_repo_btn"),
-                                      url=f'https://github.com/sapienzastudentsnetwork/tgroupsindexerbot'),
-                 InlineKeyboardButton(text=locale.get_string("about_menu.git_channel_btn"),
-                                      url=f'tg://resolve?domain=tgroupsindexerbotgit')
-                ],
-                [
-                 InlineKeyboardButton(text=locale.get_string("about_menu.feature_request_btn"),
-                                     url=f'https://github.com/sapienzastudentsnetwork/tgroupsindexerbot/issues/new?'
-                                         f'title=[FEATURE REQUEST]%20Please%20choose%20a%20title%20for%20this%20feature%20request'
-                                         f'&body=Please%20describe%20the%20request%20in%20detail%20here.%20Thanks%20in%20advance%20:)'),
-                 InlineKeyboardButton(text=locale.get_string("about_menu.report_issue_btn"),
-                                      url=f'https://github.com/sapienzastudentsnetwork/tgroupsindexerbot/issues/new?'
-                                          f'title=[ISSUE]%20Please%20choose%20a%20title%20for%20this%20issue'
-                                          f'&body=Please%20describe%20the%20issue%20in%20detail%20here.%20Thanks%20in%20advance%20:)')
-                ],
-                [
-                    InlineKeyboardButton(text=locale.get_string("about_menu.contact_us_btn"),
-                                         url=f'tg://resolve?domain=' + GlobalVariables.contact_username),
-                ],
-            ]
-
-        keyboard.append([InlineKeyboardButton(text=locale.get_string("about_menu.back_btn"), callback_data="main_menu")])
+        keyboard = [
+            [
+             InlineKeyboardButton(text=locale.get_string("about_menu.github_repo_btn"),
+                                  url=f'https://github.com/sapienzastudentsnetwork/sapienzastudentsbot'),
+             InlineKeyboardButton(text=locale.get_string("about_menu.git_channel_btn"),
+                                  url=f'tg://resolve?domain=tgroupsindexerbotgit')
+            ],
+            [
+             InlineKeyboardButton(text=locale.get_string("about_menu.feature_request_btn"),
+                                 url=f'https://github.com/sapienzastudentsnetwork/sapienzastudentsbot/issues/new?'
+                                     f'title=[FEATURE REQUEST]%20Please%20choose%20a%20title%20for%20this%20feature%20request'
+                                     f'&body=Please%20describe%20the%20request%20in%20detail%20here.%20Thanks%20in%20advance%20:)'),
+             InlineKeyboardButton(text=locale.get_string("about_menu.report_issue_btn"),
+                                  url=f'https://github.com/sapienzastudentsnetwork/sapienzastudentsbot/issues/new?'
+                                      f'title=[ISSUE]%20Please%20choose%20a%20title%20for%20this%20issue'
+                                      f'&body=Please%20describe%20the%20issue%20in%20detail%20here.%20Thanks%20in%20advance%20:)')
+            ],
+            [
+                InlineKeyboardButton(text=locale.get_string("about_menu.contact_us_btn"),
+                                     url=f'tg://resolve?domain=' + GlobalVariables.contact_username),
+            ],
+            [InlineKeyboardButton(text=locale.get_string("about_menu.back_btn"), callback_data="main_menu")]
+        ]
 
         return text, InlineKeyboardMarkup(keyboard)
 
