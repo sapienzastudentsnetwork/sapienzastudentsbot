@@ -2,7 +2,7 @@
 
 ## About the project
 
-The [@SapienzaStudentsBot Telegram Bot](https://telegram.me/) was originally created by the "Sapienza Students" organization and is now maintained by the "Sapienza Students Network" organization. The bot aims to simplify the discovery of Telegram groups dedicated to students of various degree programs and subjects, making it easier for prospective students to find relevant groups.
+The [@SapienzaStudentsBot Telegram Bot](https://telegram.me/SapienzaStudentsBot) was originally created by the "Sapienza Students" organization and is now maintained by the "Sapienza Students Network" organization. The bot aims to simplify the discovery of Telegram groups dedicated to students of various degree programs and subjects, making it easier for prospective students to find relevant groups.
 
 🔔 Stay updated on the core project developments, based on the ["Telegram Groups Indexer Bot"](https://github.com/matypist/tgroupsindexerbot) by [@matypist](https://github.com/matypist), by joining the [TGroupsIndexerBot Telegram Channel](https://t.me/TGroupsIndexerBotGit).
 
